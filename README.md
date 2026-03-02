@@ -29,4 +29,4 @@ Matplotlib
 
 ▶️ How to Run
 pip install -r requirements.txt
-python src/app.py
+python src/Student's-Grade-Management-System.py
