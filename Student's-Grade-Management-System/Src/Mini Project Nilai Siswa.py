@@ -608,7 +608,7 @@ def main():
         while True:
             display_menu(translator)
             choice = get_valid_choice(translator.t("choose_menu"), 
-                                    [str(i) for i in range(1, 18)])
+                                    [str(i) for i in range(1, 19)])
             
             # MENU 1: Tambah Siswa
             if choice == '1':
@@ -735,15 +735,16 @@ def main():
                 print(translator.t("goodbye"))
                 print("Data tersimpan secara permanen di database SQLite.")
                 break
+                
+            #MENU 18: Pilih bahasa
+            elif choice == '18':
+                new_lang = "en" if translator.get_language() == "id" else "id"
+                translator.set_language(new_lang)
+
+                lang_name = "Bahasa Indonesia" if new_lang == "id" else "English"
+                print(translator.t("language_changed", lang=lang_name))
             
             if choice not in ['8', '9', '10', '11', '12']:  # Skip pause untuk plot
-                input(translator.t("press_enter"))
-            
-            # MENU 18: Ganti Bahasa
-            if choice == '18':
-                new_lang = "en" if translator._current_lang == "id" else "id"
-                translator = Translator(new_lang)
-                print(translator.t("language_changed", lang="Bahasa Indonesia" if new_lang == "id" else "English"))
                 input(translator.t("press_enter"))
             
     except KeyboardInterrupt:
@@ -755,4 +756,5 @@ def main():
         print("💾 Sampai jumpa!")
 
 if __name__ == "__main__":
+
     main()
